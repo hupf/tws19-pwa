@@ -31,6 +31,7 @@
 
 ## Resources
 
-- ["Progressive Web Apps: Escaping Tabs Without Losing Our Soul", blog article by Alex Russell](https://infrequently.org/2015/06/progressive-apps-escaping-tabs-without-losing-our-soul/
-- ["The Service Worker cookbook", by Mozilla containing a lot of interesting Service Worker recipies](https://serviceworke.rs/)
-- ["ServiceWorkers Outbreak: index-sw-9a4c43b4b47781ca619eaaf5ac1db.js", talk by Alexander Pope](https://www.youtube.com/watch?v=CPP9ew4Co0M)
+- ["Progressive Web Apps", Google Developers documentation](https://developers.google.com/web/progressive-web-apps/)
+- ["Progressive Web Apps: Escaping Tabs Without Losing Our Soul", blog article by Alex Russell](https://infrequently.org/2015/06/progressive-apps-escaping-tabs-without-losing-our-soul/)
+- ["The Service Worker cookbook", by Mozilla, contains a lot of interesting Service Worker recipies](https://serviceworke.rs/)
+- ["ServiceWorkers Outbreak: index-sw-9a4c43b4b47781ca619eaaf5ac1db.js", entertaining talk by Alexander Pope outlining the risks of using Service Workers](https://www.youtube.com/watch?v=CPP9ew4Co0M)
