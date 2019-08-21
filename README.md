@@ -22,3 +22,7 @@
 - Implement caching using Service Worker for your own project
 - [How to integrate Service Worker with Angular?](https://angular.io/guide/service-worker-intro)
 - How to integrate Service Worker with Rails?
+
+## Resources
+
+- ["Progressive Web Apps: Escaping Tabs Without Losing Our Soul", blog article by Alex Russell](https://infrequently.org/2015/06/progressive-apps-escaping-tabs-without-losing-our-soul/
