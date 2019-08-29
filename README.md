@@ -12,7 +12,7 @@
 ## Agenda
 
 - Introduction
-- [Use a Web Worker](01-web-worker.md)
+- [Lab: Use a Web Worker](01-web-worker.md)
 - Google Codelab: [Your First Progressive Web App](https://codelabs.developers.google.com/codelabs/your-first-pwapp/)
 - [Generate the Service Worker using Workbox](https://developers.google.com/web/tools/workbox/guides/get-started)
 - Further topics

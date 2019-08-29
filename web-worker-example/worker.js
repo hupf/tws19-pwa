@@ -2,34 +2,26 @@
 
 console.log("Hello, I'm the worker...");
 
-self.onmessage = onMessage;
 
-function onMessage(event) {
-  console.log("Worker received:", event.data);
-  self.postMessage("Hey");
+self.onmessage = onMessage
+
+function onMessage(evt) {
+  calculateNextFibonacci();
 }
 
-// var curFib = 0;
+let index = 0;
 
-// self.onmessage = onMessage
-
-// // **********************************
-
-
-// function onMessage(evt) {
-//   getNextFib();
-// }
-
-function getNextFib() {
-  var num = fib(curFib)
-  self.postMessage({ idx: curFib, fib: num });
-  curFib++;
-  setTimeout(getNextFib)
+function calculateNextFibonacci() {
+  var num = getFibonacci(index);
+  // console.log(`Fibonacci (${index}): ${num}`);
+  self.postMessage({ index, num });
+  index++;
+  setTimeout(calculateNextFibonacci);
 }
 
-function fib(n) {
+function getFibonacci(n) {
   if (n < 2) {
     return n;
   }
-  return fib(n-1) + fib(n-2);
+  return getFibonacci(n-1) + getFibonacci(n-2);
 }

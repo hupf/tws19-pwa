@@ -29,7 +29,6 @@
     worker = new Worker("/worker.js");
     worker.addEventListener("message", onMessage);
     worker.postMessage("Hi");
-    // worker.postMessage({ start: true });
   }
 
   function stop() {
@@ -42,18 +41,19 @@
 
   function onMessage(event) {
     console.log("Script received:", event.data);
-    //   renderFib(event.data.idx, event.data.fib);
+    const { index, num } = event.data;
+    render(index, num);
   }
 
-  // function renderFib(num,fib) {
-  //   var p = document.createElement("div");
-  //   p.innerText = `Fib(${num}): ${fib}`;
-  //   if (fibsList.childNodes.length > 0) {
-  //     fibsList.insertBefore(p,fibsList.childNodes[0]);
-  //   }
-  //   else {
-  //     fibsList.appendChild(p);
-  //   }
-  // }
+  function render(index, num) {
+    const p = document.createElement("div");
+    p.innerText = `Fibonacci (${index}): ${num}`;
+    if (results.childNodes.length > 0) {
+      results.insertBefore(p, results.childNodes[0]);
+    }
+    else {
+      results.appendChild(p);
+    }
+  }
 
 })();
