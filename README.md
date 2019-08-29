@@ -2,19 +2,20 @@
 
 ## Learning Goals
 
-- How to use Lighthouse and Dev Tools?
-- Provide Metadata (manifest.json)
+- How to use Lighthouse and Dev Tools
+- How to provide metadata (manifest.json)
 - Understand the Service Worker Lifecycle
 - Know the various caching strategies (network-first, cache-first etc.)
-- What are the PWA performance wins? (time-to-first-paint, time-to-interactive, time-to-data)
+- What are the PWA performance wins? (time-to-first-paint, time-to-interactive)
 - Learn about PWA patterns (App Shell, [PRPL](https://developers.google.com/web/fundamentals/performance/prpl-pattern/))
+
 
 ## Agenda
 
 - Introduction
 - [Lab: Use a Web Worker](01-web-worker.md)
 - Google Codelab: [Your First Progressive Web App](https://codelabs.developers.google.com/codelabs/your-first-pwapp/)
-- [Generate the Service Worker using Workbox](https://developers.google.com/web/tools/workbox/guides/get-started)
+- Rewrite/generate the Service Worker using [Workbox](https://developers.google.com/web/tools/workbox/guides/get-started)
 - Further topics
 
 
@@ -23,13 +24,15 @@
 - Push/notifications
 - Background sync
 - Implement caching using Service Worker for your own project
-- [Integrate Service Worker with Angular?](https://angular.io/guide/service-worker-intro)
+- [Integrate Service Worker with Angular](https://angular.io/guide/service-worker-intro)
 - Integrate Service Worker with Rails?
+
 
 ## Questions
 
 - How to update the Service Worker?
 - What are the Service Worker pitfalls?
+
 
 ## Resources
 
