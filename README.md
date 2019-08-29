@@ -1,5 +1,14 @@
 # Tech Workshop 2019 –– Progressive Web Apps
 
+## Learning Goals
+
+- How to use Lighthouse and Dev Tools?
+- Provide Metadata (manifest.json)
+- Understand the Service Worker Lifecycle
+- Know the various caching strategies (network-first, cache-first etc.)
+- What are the PWA performance wins? (time-to-first-paint, time-to-interactive, time-to-data)
+- Learn about PWA patterns (App Shell, [PRPL](https://developers.google.com/web/fundamentals/performance/prpl-pattern/))
+
 ## Agenda
 
 - Introduction
@@ -7,14 +16,6 @@
 - [Generate the Service Worker using Workbox](https://developers.google.com/web/tools/workbox/guides/get-started)
 - Further topics
 
-## Goals
-
-- How to use Lighthouse and Dev Tools
-- Metadata (manifest.json)
-- Service Worker lifecycle
-- Caching strategies (network-first, cache-first)
-- PWA performance wins (time-to-first-paint, time-to-interactive, time-to-data)
-- PWA pattern (App Shell, [PRPL](https://developers.google.com/web/fundamentals/performance/prpl-pattern/))
 
 ## Further Topics
 
