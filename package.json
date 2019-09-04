@@ -1,0 +1,34 @@
+{
+  "name": "tws19-pwa",
+  "version": "1.0.0",
+  "description": "## Learning Goals",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "husky": "^3.0.5",
+    "lint-staged": "^9.2.5",
+    "prettier": "1.18.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write \"./**/*.{js,ts,json,css,scss,html,md,yaml}\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@ssh.gitlab.puzzle.ch:pitc_members/tws19-pwa.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,json,css,scss,html,md,yaml}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}

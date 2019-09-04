@@ -2,8 +2,7 @@
 
 console.log("Hello, I'm the worker...");
 
-
-self.onmessage = onMessage
+self.onmessage = onMessage;
 
 function onMessage(evt) {
   calculateNextFibonacci();
@@ -23,5 +22,5 @@ function getFibonacci(n) {
   if (n < 2) {
     return n;
   }
-  return getFibonacci(n-1) + getFibonacci(n-2);
+  return getFibonacci(n - 1) + getFibonacci(n - 2);
 }

@@ -1,10 +1,10 @@
-(function Home(){
+(function Home() {
   "use strict";
 
   let startBtn;
   let stopBtn;
   let results;
-  let worker
+  let worker;
 
   document.addEventListener("DOMContentLoaded", ready, false);
 
@@ -50,10 +50,8 @@
     p.innerText = `Fibonacci (${index}): ${num}`;
     if (results.childNodes.length > 0) {
       results.insertBefore(p, results.childNodes[0]);
-    }
-    else {
+    } else {
       results.appendChild(p);
     }
   }
-
 })();

@@ -9,7 +9,6 @@
 - What are the PWA performance wins? (time-to-first-paint, time-to-interactive)
 - Learn about PWA patterns (App Shell, [PRPL](https://developers.google.com/web/fundamentals/performance/prpl-pattern/))
 
-
 ## Agenda
 
 - Introduction
@@ -17,7 +16,6 @@
 - Google Codelab: [Your First Progressive Web App](https://codelabs.developers.google.com/codelabs/your-first-pwapp/)
 - Rewrite/generate the Service Worker using [Workbox](https://developers.google.com/web/tools/workbox/guides/get-started)
 - Further topics
-
 
 ## Further Topics
 
@@ -27,12 +25,10 @@
 - [Integrate Service Worker with Angular](https://angular.io/guide/service-worker-intro)
 - Integrate Service Worker with Rails?
 
-
 ## Questions
 
 - How to update the Service Worker?
 - What are the Service Worker pitfalls?
-
 
 ## Resources
 

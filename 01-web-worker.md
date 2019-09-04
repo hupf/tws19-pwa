@@ -121,6 +121,7 @@ function onMessage(event) {
 ```
 
 In your `worker.js`, also add an event listener and respond with another message:
+
 ```
 self.onmessage = onMessage;
 
