@@ -13,6 +13,7 @@
 
 - Introduction
 - [Lab: Use a Web Worker](01-web-worker.md)
+- [Lab: Lab: Learn about Service Worker and its Life Cycle](02-service-worker.md)
 - Google Codelab: [Your First Progressive Web App](https://codelabs.developers.google.com/codelabs/your-first-pwapp/)
 - Rewrite/generate the Service Worker using [Workbox](https://developers.google.com/web/tools/workbox/guides/get-started)
 - Further topics

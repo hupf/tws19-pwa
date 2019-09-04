@@ -1,6 +1,6 @@
 [back](README.md)
 
-# Lab: Learn about Service Worker its Live Cycle
+# Lab: Learn about Service Worker and its Life Cycle
 
 A service worker is a special kind of web worker. It is event driven and always
 registered against a certain path. Its main purpose is to intercept network
