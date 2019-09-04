@@ -7,7 +7,7 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
 
-    <title>reveal.js</title>
+    <title>Progressive Web Apps – Tech Workshop 2019</title>
 
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/reveal.css" />
@@ -61,8 +61,130 @@
 
           <section data-markdown>
             <textarea data-template>
-              ...
+              ### History
+              * 📱 2007: iPhone launch (SDK-less "web" apps)
+              * 📦 2008: AppStore launch
+              * 📱💻🖥 2010+: Responsive web design
+              * 🚀 2010+: Improved browser APIs
+              * 🔥 2013: Firefox OS
+
+              notes:
+              * Firefox OS: web apps running native
             </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### History (cont.)
+              * 🗣 2015: Alex Russel & Frances Berriman introduce the term "Progressive Web Apps"
+              * 🍏 2017: Safari supports Service Worker
+              * 🎉 2019: widely adopted
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### Definition
+              * a type of mobile web application
+              * built using common web technologies
+              * platform-independent
+              * works in any browser
+              * progressively introduce app-like behavior using newer browser features
+
+              [Wikipedia](https://en.wikipedia.org/wiki/Progressive_web_applications)
+
+              note:
+              "Sites progressively become Apps" – Mike North
+            </textarea>
+          </section>
+
+          <section>
+            <blockquote
+              cite="https://infrequently.org/2015/06/progressive-apps-escaping-tabs-without-losing-our-soul/"
+            >
+              (PWAs are) &quot;websites that took all the right vitamins&quot;
+            </blockquote>
+            – Alex Russel
+          </section>
+
+          <section>
+            <h3>Characteristics</h3>
+            <div
+              style="display: grid; grid-template-columns: 1fr 1fr 1fr; grid-gap: 1.25em"
+            >
+              <div>Discoverable</div>
+              <div>Installable</div>
+              <div>Linkable</div>
+              <div>Network independent</div>
+              <div>Responsive</div>
+              <div>Progressive</div>
+              <div>Re-engageable</div>
+              <div>Fresh</div>
+              <div>Safe</div>
+            </div>
+
+            <aside class="notes" data-markdown>
+              <textarea data-template>
+                * Discoverable: can be found through search engines, identifiable as “applications” (W3C Manifests and Service Worker registration)
+                * Installable: add to the home screen without app store
+                * Linkable: so you can share it by simply sending a URL.
+                * Network independent: so it works offline or with a poor network connection.
+                * Responsive: usable on any device with a screen and a browser
+                * Progressive, so it's still usable on a basic level on older browsers, but fully-functional on the latest ones.
+                * Re-engageable: Can access the re-engagement UIs of the OS; e.g. Push Notifications
+                * Fresh: Transparently always up-to-date thanks to the Service Worker update process
+                * Safe: Served via TLS (a Service Worker requirement) to prevent snooping
+              </textarea>
+            </aside>
+          </section>
+
+          <section>
+            <h3>Browser APIs</h3>
+            <div
+              style="display: grid; grid-template-columns: 1fr 1fr 1fr; grid-gap: 1.25em"
+            >
+              <a href="https://developer.mozilla.org/en-US/docs/Web/Manifest"
+                >Web App Manifest</a
+              >
+              <a
+                href="https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Add_to_home_screen"
+                >Add to Home screen</a
+              >
+              <a
+                href="https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API"
+                >Service Worker</a
+              >
+              <a
+                href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API"
+                >Web Storage</a
+              >
+              <a
+                href="https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API"
+                >Indexed DB</a
+              >
+              <a
+                href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation"
+                >Geolocation</a
+              >
+              <a
+                href="https://developer.mozilla.org/en-US/docs/Web/API/Push_API"
+                >Push</a
+              >
+              <a
+                href="https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API"
+                >Notifications</a
+              >
+              <div>...</div>
+            </div>
+
+            <aside class="notes" data-markdown>
+              <textarea data-template>
+                * Not a single API
+                * Many of these APIs aren't brand new
+                * Push & Notifications are two seperate things
+                * Many more: Cache API, Camera API etc.
+              </textarea>
+            </aside>
           </section>
 
           <section data-markdown>
@@ -74,14 +196,41 @@
           <section data-markdown>
             <textarea data-template>
               #### App Shell
-              tbd
+              * Minimal HTML, CSS and JavaScript for UI
+              * Cached offline (Service Worker)
+              * Instantly loaded on repeat visits
+
+              [Article by Addy Osmany](https://developers.google.com/web/fundamentals/architecture/app-shell)
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### App Shell (cont.)
+              ![App Shell Example](img/appshell.png)
             </textarea>
           </section>
 
           <section data-markdown>
             <textarea data-template>
               #### PRPL
-              tbd
+              * _Push_ critical resources for the initial URL route.
+              * _Render_ initial route.
+              * _Pre-cache_ remaining routes.
+              * _Lazy-load_ and create remaining routes on demand.
+
+              [Article by Addy Osmany](https://developers.google.com/web/fundamentals/performance/prpl-pattern/)
+
+              note:
+              * Goal: Minimum time-to-interactive
+              * Push = HTTP/2 push
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### Performance
+              ![Performance Graph](img/performance.svg)
             </textarea>
           </section>
         </section>
@@ -96,27 +245,97 @@
           <section data-markdown>
             <textarea data-template>
               ### manifest.json
-              tbd
-            </textarea>
-          </section>
-        </section>
+              * Application name/description
+              * Icons
+              * Colors
 
-        <section>
-          <section class="master04" data-markdown>
-            <textarea data-template>
-              ## Service Workers
+              -> Splash screen (Chrome-only)
+
+              note:
+              * Splash screen in Chrome is generated from data in manifest.json
             </textarea>
           </section>
 
           <section data-markdown>
             <textarea data-template>
-              tbd
+              ### Meta tags
+              * [viewport](https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag)
+              * [apple-mobile-web-app-*](https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html)
             </textarea>
           </section>
         </section>
 
         <section>
           <section class="master04" data-markdown>
+            <textarea data-template>
+              ## Service Worker
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### Prerequisite: Web Worker
+              * Run scripts in background threads
+              * Dedicated/shared
+              * Communication via <code>postMessage</code>
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### What is a Service Worker?
+              * Web Worker for the network
+              * Request proxy
+              * Shared between multiple tabs
+              * Can even be active when site is closed
+              * Communication via <code>postMessage</code>
+
+              note:
+              * Show notification after server push, with page being closed
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### Use Cases
+              * Caching/offline support
+              * Background Sync
+              * Push/Notifications
+              * URL-Rewriting
+              * Programmatic created content
+              * Prefetching
+              * ...
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### Limitations
+              * Can only manage resources below its location
+              * CORS (even for assets)
+              * 🚫 Cookies
+              * 🚫 localStorage
+              * 🚫 GeoLocation
+
+              note:
+              CORS except for opaque AJAX calls where response remains untouched
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### Lifecycle
+              tbd
+
+              note:
+              * Only one Service Worker can be active
+              * The new Service Worker remains in the _waiting_ state until no tab uses it (this is also the case when reloading the page)
+            </textarea>
+          </section>
+        </section>
+
+        <section>
+          <section class="master05" data-markdown>
             <textarea data-template>
               ## Caching Strategies
             </textarea>
@@ -130,22 +349,29 @@
         </section>
 
         <section>
-          <section class="master05" data-markdown>
+          <section class="master03" data-markdown>
             <textarea data-template>
-              ## Patterns
+              ## Tools
             </textarea>
           </section>
 
           <section data-markdown>
             <textarea data-template>
-              ### App Shell
+              ### Lighthouse
               tbd
             </textarea>
           </section>
 
           <section data-markdown>
             <textarea data-template>
-              ### PRPL
+              ### Browser Dev Tools
+              tbd
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### Workbox
               tbd
             </textarea>
           </section>
