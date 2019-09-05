@@ -26,12 +26,28 @@
         : "css/print/paper.css";
       document.getElementsByTagName("head")[0].appendChild(link);
     </script>
+    <style>
+      .three-column-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 0.5em;
+        align-items: center;
+      }
+      .three-column-grid > * {
+        background-color: #eee;
+        padding: 0.5em;
+        border-radius: 20px;
+      }
+      .three-column-grid > a {
+        background-image: none;
+      }
+    </style>
   </head>
   <body>
     <div class="reveal">
       <div class="slides">
         <section class="master01">
-          <h1>Progressive Web Apps</h1>
+          <h1>Progressive<br />Web Apps</h1>
           <p>
             Tech Workshop 12.09.2019,<br />
             Andreas Maierhofer & Mathis Hofer
@@ -55,6 +71,8 @@
         <section>
           <section class="master03" data-markdown>
             <textarea data-template>
+              <img src="img/pwalogo-inverse.svg" width="300" alt="PWA Logo"><br>
+
               ## What is a Progressive Web App?
             </textarea>
           </section>
@@ -109,16 +127,14 @@
 
           <section>
             <h3>Characteristics</h3>
-            <div
-              style="display: grid; grid-template-columns: 1fr 1fr 1fr; grid-gap: 1.25em"
-            >
+            <div class="three-column-grid">
               <div>Discoverable</div>
               <div>Installable</div>
               <div>Linkable</div>
               <div>Network independent</div>
               <div>Responsive</div>
               <div>Progressive</div>
-              <div>Re-engageable</div>
+              <div style="letter-spacing: -4px">Re-engageable</div>
               <div>Fresh</div>
               <div>Safe</div>
             </div>
@@ -140,14 +156,13 @@
 
           <section>
             <h3>Browser APIs</h3>
-            <div
-              style="display: grid; grid-template-columns: 1fr 1fr 1fr; grid-gap: 1.25em"
-            >
+            <div class="three-column-grid">
               <a href="https://developer.mozilla.org/en-US/docs/Web/Manifest"
                 >Web App Manifest</a
               >
               <a
                 href="https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Add_to_home_screen"
+                style="letter-spacing: -2px"
                 >Add to Home screen</a
               >
               <a
@@ -224,6 +239,7 @@
               note:
               * Goal: Minimum time-to-interactive
               * Push = HTTP/2 push
+              * Code splitting
             </textarea>
           </section>
 
@@ -287,7 +303,8 @@
               * Web Worker for the network
               * Request proxy
               * Shared between multiple tabs
-              * Can even be active when site is closed
+              * Can be active when website closed
+              * Can be active when browser not running
               * Communication via <code>postMessage</code>
 
               note:
@@ -301,16 +318,19 @@
               * Caching/offline support
               * Background Sync
               * Push/Notifications
+              * Prefetching
               * URL-Rewriting
               * Programmatic created content
-              * Prefetching
               * ...
+
+              note:
+              Example for programm. content: generate dyn. avatar if image is not available
             </textarea>
           </section>
 
           <section data-markdown>
             <textarea data-template>
-              ### Limitations
+              ### Technical Limitations
               * Can only manage resources below its location
               * CORS (even for assets)
               * 🚫 Cookies
@@ -318,18 +338,158 @@
               * 🚫 GeoLocation
 
               note:
-              CORS except for opaque AJAX calls where response remains untouched
+              * CORS except for opaque AJAX calls where response remains untouched
+              * Permissions (e.g. for GeoLocation) must have been granted beforehand
             </textarea>
           </section>
 
           <section data-markdown>
             <textarea data-template>
-              ### Lifecycle
-              tbd
+              ### Technical Possibilities
+              * [fetch()](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
+              * [Cache API](https://developer.mozilla.org/en-US/docs/Web/API/Cache)
+              * [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API)
+              * etc.
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### Lifecycle & Events
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Chrome Analogy
+              * Chrome is running
+              * Update is downloaded in background
+              * Update waits until all current windows are closed
+              * Then new version can become current Chrome
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### SW Lifecycle
+              * SW is _active_
+              * New SW is downloaded in background
+              * New SW is _installed_ (prepared)
+              * New SW is _waiting_ until no more tabs use old SW
+              * Then new SW becomes _active_
 
               note:
+              * A SW is installed just like an "application" (e.g. Chrome)
               * Only one Service Worker can be active
-              * The new Service Worker remains in the _waiting_ state until no tab uses it (this is also the case when reloading the page)
+              * Therefore a lifecycle is defined
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### SW Lifecycle (cont.)
+              ![Lifecycle](img/lifecycle.svg)
+
+              note:
+              * Browser automatically looks for and downloads new Service Worker versions
+              * The Service Worker is new if 1 byte of the script file changed
+              * "install": Populate new cache with offline resources
+              * "activate": Clean up old cache
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ⚠️ Reloading the page does not release the Service Worker
+
+              note:
+              * The new Service Worker remains in the _waiting_ state until no tab uses it, this is also the case when reloading the page
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Registration
+              ```javascript
+              if ('serviceWorker' in navigator) {
+                navigator.serviceWorker
+                  .register('service-worker.js')
+                    .then(registration =>
+                      console.log('Registered!')
+                    )
+                    .catch(error =>
+                      console.log('Something went wrong')
+                    );
+              }
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Events
+              <div style="display: flex; flex-direction: row;">
+                <div style="flex: 1">
+                  Lifecycle:<br>
+                  <code>install</code><br>
+                  <code>activate</code><br>
+                  <code>message</code>
+                </div>
+                <div style="flex: 1">
+                  Functional:<br>
+                  <code>fetch</code><br>
+                  <code>sync</code><br>
+                  <code>push</code><br>
+                </div>
+              </div>
+
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Events (cont.)
+              In Service Worker:
+              ```javascript
+              self.addEventListener('install', event => ...)
+              self.addEventListener('fetch', event => ...)
+              ```
+
+              In web app:
+              ```javascript
+              worker.addEventListener('statechange', event => ...)
+              ```
+
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### Don't Wait
+TODO: when to use this, when not? dangers?
+
+              ```javascript
+              self.addEventListener('install', event => {
+                // Immediately replace the current SW (!)
+                self.skipWaiting();
+              });
+              ```
+
+              note:
+              * Currently active service worker is interrupted and killed!
+              * Running web app version != SW version
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### Generation & Abstraction
+              * Integrated in frameworks (e.g. [Angular CLI](https://angular.io/guide/service-worker-getting-started))
+              * [Workbox](https://developers.google.com/web/tools/workbox/)
+
+              note:
+              * Integrated in build pipeline: prefetching of assets
+              * Libraries implement best practices, provide caching strategies, avoid boilerplate
             </textarea>
           </section>
         </section>
@@ -358,21 +518,20 @@
           <section data-markdown>
             <textarea data-template>
               ### Lighthouse
-              tbd
+
+              <img src="img/lighthouse-puzzle.png" width="350" alt="Lighthouse Puzzle Report">
+
+              [Chrome Extension](https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk)
             </textarea>
           </section>
 
           <section data-markdown>
             <textarea data-template>
               ### Browser Dev Tools
-              tbd
-            </textarea>
-          </section>
-
-          <section data-markdown>
-            <textarea data-template>
-              ### Workbox
-              tbd
+              * Test responsive views
+              * Simulate slow network & offline
+              * Analyze performance
+              * Inspect & debug Service Workers
             </textarea>
           </section>
         </section>
