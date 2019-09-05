@@ -1,0 +1,4 @@
+{
+  "name": "tws19-pwa",
+  "builds": [{ "src": "**/*.{html,js,css,png,svg}", "use": "@now/static" }]
+}

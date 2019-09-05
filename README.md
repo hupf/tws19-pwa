@@ -1,17 +1,8 @@
 # Tech Workshop 2019 –– Progressive Web Apps
 
-## Learning Goals
-
-- How to use Lighthouse and Dev Tools
-- How to provide metadata (manifest.json)
-- Understand the Service Worker Lifecycle
-- Know the various caching strategies (network-first, cache-first etc.)
-- What are the PWA performance wins? (time-to-first-paint, time-to-interactive)
-- Learn about PWA patterns (App Shell, [PRPL](https://developers.google.com/web/fundamentals/performance/prpl-pattern/))
-
 ## Agenda
 
-- Introduction
+- [Introduction](https://tws19-pwa.hupf.now.sh/)
 - [Lab: Use a Web Worker](01-web-worker.md)
 - [Lab: Learn about Service Worker and its Life Cycle](02-service-worker.md)
 - Google Codelab: [Your First Progressive Web App](https://codelabs.developers.google.com/codelabs/your-first-pwapp/)
@@ -28,11 +19,6 @@ These are ideas for more topics to self-study:
 - Learn about more [Workbox](https://developers.google.com/web/tools/workbox/guides/get-started) features
 - Checkout the [Push API](https://developer.mozilla.org/en-US/docs/Web/API/Push_API) or the [Notifications API](https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API)
 - Learn about [Background Sync](https://developers.google.com/web/tools/workbox/modules/workbox-background-sync)
-
-## Questions
-
-- How to update the Service Worker?
-- What are the Service Worker pitfalls?
 
 ## Resources
 

@@ -591,13 +591,34 @@
       // More info about config & dependencies:
       // - https://github.com/hakimel/reveal.js#configuration
       // - https://github.com/hakimel/reveal.js#dependencies
+
+      const dependencies = [
+        { src: "plugin/markdown/marked.js" },
+        { src: "plugin/markdown/markdown.js" },
+        { src: "plugin/notes/notes.js", async: true },
+        { src: "plugin/highlight/highlight.js", async: true },
+        {
+          src: "//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js",
+          async: true
+        }
+      ];
+
+      // Enable master with ?present
+      if (location.search.indexOf("present") !== -1) {
+        dependencies.push({ src: "plugin/multiplex/master.js", async: true });
+      } else {
+        dependencies.push({ src: "plugin/multiplex/client.js", async: true });
+      }
+
       Reveal.initialize({
-        dependencies: [
-          { src: "plugin/markdown/marked.js" },
-          { src: "plugin/markdown/markdown.js" },
-          { src: "plugin/notes/notes.js", async: true },
-          { src: "plugin/highlight/highlight.js", async: true }
-        ]
+        multiplex: {
+          // Example values. To generate your own, see the socket.io server instructions.
+          secret: "15676924036326511938", // Obtained from the socket.io server. Gives this (the master) control of the presentation
+          id: "5224444187f8af39", // Obtained from socket.io server
+          url: "https://reveal-js-multiplex-ccjbegmaii.now.sh" // Location of socket.io server
+        },
+
+        dependencies
       });
     </script>
   </body>
