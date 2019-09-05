@@ -13,9 +13,9 @@
 
 - Introduction
 - [Lab: Use a Web Worker](01-web-worker.md)
-- [Lab: Lab: Learn about Service Worker and its Life Cycle](02-service-worker.md)
+- [Lab: Learn about Service Worker and its Life Cycle](02-service-worker.md)
 - Google Codelab: [Your First Progressive Web App](https://codelabs.developers.google.com/codelabs/your-first-pwapp/)
-- Rewrite/generate the Service Worker using [Workbox](https://developers.google.com/web/tools/workbox/guides/get-started)
+- Google Codelab: [Build a PWA using Workbox](https://codelabs.developers.google.com/codelabs/workbox-lab/)
 - Further topics
 
 ## Further Topics
@@ -23,10 +23,11 @@
 These are ideas for more topics to self-study:
 
 - Implement caching using Service Worker for your own project
+- [Add a Service Worker to a Angular CLI project](https://angular.io/guide/service-worker-intro)
+- [Add a Service Worker to a Rails project](https://github.com/rossta/serviceworker-rails)
+- Learn about more [Workbox](https://developers.google.com/web/tools/workbox/guides/get-started) features
 - Checkout the [Push API](https://developer.mozilla.org/en-US/docs/Web/API/Push_API) or the [Notifications API](https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API)
 - Learn about [Background Sync](https://developers.google.com/web/tools/workbox/modules/workbox-background-sync)
-- [Integrate Service Worker with Angular](https://angular.io/guide/service-worker-intro)
-- [Integrate Service Worker with Rails](https://github.com/rossta/serviceworker-rails)
 
 ## Questions
 

@@ -64,7 +64,12 @@
         <section class="master02" data-markdown>
           <textarea data-template>
             ## Agenda
-            tbd
+            * Introduction
+            * Lab: Use a Web Worker
+            * Lab: Learn about Service Worker and its Life Cycle
+            * Google Codelab: Your First Progressive Web App
+            * Google Codelab: Build a PWA using Workbox
+            * Further topics
           </textarea>
         </section>
 
@@ -149,7 +154,7 @@
                 * Progressive, so it's still usable on a basic level on older browsers, but fully-functional on the latest ones.
                 * Re-engageable: Can access the re-engagement UIs of the OS; e.g. Push Notifications
                 * Fresh: Transparently always up-to-date thanks to the Service Worker update process
-                * Safe: Served via TLS (a Service Worker requirement) to prevent snooping
+                * Safe: Served via TLS (a Service Worker requirement) to prevent snooping (except localhost)
               </textarea>
             </aside>
           </section>
@@ -420,6 +425,8 @@
                     .catch(error =>
                       console.log('Something went wrong')
                     );
+              } else {
+                console.log('No Service Worker support')
               }
               ```
             </textarea>
@@ -449,15 +456,22 @@
           <section data-markdown>
             <textarea data-template>
               #### Events (cont.)
-              In Service Worker:
               ```javascript
-              self.addEventListener('install', event => ...)
-              self.addEventListener('fetch', event => ...)
+              self.addEventListener('install', event => ...);
+              self.addEventListener('activate', event => ...);
+              self.addEventListener('message', event => ...);
+              self.addEventListener('fetch', event => ...);
+              self.addEventListener('sync', event => ...);
+              self.addEventListener('push', event => ...);
               ```
 
-              In web app:
+              Other events (in web app):
               ```javascript
-              worker.addEventListener('statechange', event => ...)
+              registration.addEventListener('updatefound',
+                event => ...
+              );
+              worker.addEventListener('statechange', event => ...);
+              ...
               ```
 
             </textarea>
@@ -465,25 +479,51 @@
 
           <section data-markdown>
             <textarea data-template>
-              ### Don't Wait
-TODO: when to use this, when not? dangers?
+              ### Immediate Take Over
 
               ```javascript
               self.addEventListener('install', event => {
                 // Immediately replace the current SW (!)
                 self.skipWaiting();
+
+                event.waitUntil(async () => {
+                  // Peform actions required for SW to install
+                });
+              });
+
+              self.addEventListener('activate', event => {
+                // Take over all unclaimed clients
+                self.clients.claim();
               });
               ```
 
               note:
-              * Currently active service worker is interrupted and killed!
+              * Avoid endless waiting as long as a tab is open
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### Immediate Take Over (cont.)
+
+              ⚠️ Beware:
+              * Interrupts & kills currently active SW!
               * Running web app version != SW version
+              * Implement app reloading!
+
+              note:
+              * Only use if you know what to do
+              * Opt-in for Workbox
+              * Angular CLI SW support tries to avoid version divergence
             </textarea>
           </section>
 
           <section data-markdown>
             <textarea data-template>
               ### Generation & Abstraction
+
+              Don't build your own SW for production!
+
               * Integrated in frameworks (e.g. [Angular CLI](https://angular.io/guide/service-worker-getting-started))
               * [Workbox](https://developers.google.com/web/tools/workbox/)
 
