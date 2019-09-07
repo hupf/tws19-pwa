@@ -269,11 +269,15 @@
               * Application name/description
               * Icons
               * Colors
+              * start_url
+              * display
 
               -> Splash screen (Chrome-only)
 
               note:
               * Splash screen in Chrome is generated from data in manifest.json
+              * Without start_url, app starts from whatever page it was added
+              * Display mode (app like, minimal browser UI, normal browser UI)
             </textarea>
           </section>
 
@@ -284,6 +288,14 @@
               * [apple-mobile-web-app-*](https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html)
             </textarea>
           </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Browser Support
+              ![Support](img/support_manifest.png)
+            </textarea>
+          </section>
+
         </section>
 
         <section>
@@ -345,6 +357,13 @@
               note:
               * CORS except for opaque AJAX calls where response remains untouched
               * Permissions (e.g. for GeoLocation) must have been granted beforehand
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Browser Support
+              ![Support](img/support_service_worker.png)
             </textarea>
           </section>
 
