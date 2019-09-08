@@ -556,13 +556,177 @@
         <section>
           <section class="master05" data-markdown>
             <textarea data-template>
-              ## Caching Strategies
+              ## Caching
             </textarea>
           </section>
 
           <section data-markdown>
             <textarea data-template>
-              tbd
+              ### Why
+
+              * General Performance Improvement
+              * Improve on slow connection
+              * Support offline experience
+            </textarea>
+          </section>
+
+
+          <section data-markdown>
+            <textarea data-template>
+              ### How
+
+              * `preCaching` during Service Worker install
+              * Service Worker `fetch` Api during runtime
+              * `cache` and `fetch` accessible to app and service worker
+
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### preCaching
+
+              ![PreCache](img/pre-cache.png)
+            </textarea>
+            note:
+            * `install` only once per service worker, new sw for new changes
+            * `activate` on every startup, cleanup resources, missing in image
+            * good for caching of app shell
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ```javascript
+              const CACHE_NAME = 'static-cache-v1';
+              const FILES_TO_CACHE = [
+                '/styles/inline.css',
+                '/images/add.svg',
+              ];
+
+              self.addEventListener('install', (evt) => {
+                evt.waitUntil(
+                  caches.open(CACHE_NAME).then((cache) => {
+                    console.log('Pre-caching offline page');
+                    return cache.addAll(FILES_TO_CACHE);
+                  })
+              );
+
+              ```
+              note:
+              * use waitUntil() to hold sw in the event until tasks complete.
+              * if promise ejects, the event is considered as failed
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### preCaching - cont
+
+              ![onActivate](img/pre-cache-activate.png)
+            </textarea>
+            note:
+            * `install` only once per service worker, new sw for new changes
+            * `activate` on every startup, cleanup resources, missing in image
+            * good for caching of app shell
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ```javascript
+              self.addEventListener('activate', (evt) => {
+                evt.waitUntil(
+                  caches.keys().then((keyList) => {
+                    return Promise.all(keyList.map((key) => {
+                      if (key !== CACHE_NAME) {
+                        console.log('Removing old cache', key);
+                        return caches.delete(key);
+                      }
+                    }));
+                  })
+                );
+              });
+
+              ```
+              note:
+              * requires changing of CACHE_NAME when cachged file is modified
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### Runtime Strategies
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### Cache First (falling back to network)
+
+              ![Cache First](img/cache-first.png)
+
+              note:
+              * return cached response if present, no network access at all
+              * fetch response, return it, cache it
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ```javascript
+              self.addEventListener('fetch', (evt) => {
+                evt.respondWith(
+                  caches.open(CACHE_NAME).then((cache) => {
+                    return cache.match(evt.request)
+                      .then((response) => {
+                        return response || fetch(evt.request);
+                      });
+                  })
+                );
+              });
+              ```
+              note:
+              * respondWith overrides default fetch by providing custom promise for a response
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### Network First (falling back to cache)
+
+              ![Cache First](img/network-first.png)
+
+              note:
+              * for requests that update frequently
+              * tries to always serve latests results
+              * does cache response for offline experience
+              * fails on slow network connections
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ```javascript
+              self.addEventListener('fetch', (evt) => {
+                evt.respondWith(
+                  caches.open(DATA_CACHE_NAME).then((cache) => {
+                    return fetch(evt.request)
+                      .then((response) => {
+                        return response;
+                      }).catch((err) => {
+                        return cache.match(evt.request);
+                      });
+                  }));
+               });
+
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              * Various combinations possible
+              * Stale While Revalidate, Cache then Network ..
+              * Both App and SW can access cache
             </textarea>
           </section>
         </section>
