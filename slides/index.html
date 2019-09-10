@@ -64,12 +64,11 @@
         <section class="master02" data-markdown>
           <textarea data-template>
             ## Agenda
-            * Introduction
-            * Lab: Use a Web Worker
-            * Lab: Learn about Service Worker and its Life Cycle
-            * Google Codelab: Your First Progressive Web App
-            * Google Codelab: Build a PWA using Workbox
-            * Further topics
+            * What is a Progressive Web App?
+            * Metadata
+            * Service Worker
+            * Caching
+            * Hands-on exercises
           </textarea>
         </section>
 
@@ -254,6 +253,36 @@
               ![Performance Graph](img/performance.svg)
             </textarea>
           </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### Tools
+              </textarea
+            >
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Lighthouse
+
+                <img src="img/lighthouse-puzzle.png" width="350" alt="Lighthouse Puzzle Report">
+
+              [Chrome Extension](https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk)
+              </textarea
+            >
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Browser Dev Tools
+              * Test responsive views
+              * Simulate slow network & offline
+              * Analyze performance
+              * Inspect & debug Service Workers
+              * Inspect caches
+              </textarea
+            >
+          </section>
         </section>
 
         <section>
@@ -295,7 +324,6 @@
               ![Support](img/support_manifest.png)
             </textarea>
           </section>
-
         </section>
 
         <section>
@@ -570,28 +598,30 @@
             </textarea>
           </section>
 
-
           <section data-markdown>
             <textarea data-template>
               ### How
 
-              * `preCaching` during Service Worker install
-              * Service Worker `fetch` Api during runtime
-              * `cache` and `fetch` accessible to app and service worker
+              * Precaching during Service Worker install
+              * `fetch` event during Service Worker runtime
+              * `cache` and `fetch` APIs accessible to app and Service Worker
 
             </textarea>
           </section>
 
           <section data-markdown>
             <textarea data-template>
-              ### preCaching
+              ### Precaching
 
               ![PreCache](img/pre-cache.png)
+
+              note:
+              * `install` only once per service worker, new sw for new
+              changes
+              * `activate` on every startup, cleanup resources, missing in
+              image
+              * good for caching of app shell
             </textarea>
-            note:
-            * `install` only once per service worker, new sw for new changes
-            * `activate` on every startup, cleanup resources, missing in image
-            * good for caching of app shell
           </section>
 
           <section data-markdown>
@@ -620,14 +650,14 @@
 
           <section data-markdown>
             <textarea data-template>
-              ### preCaching - cont
+              ### Precaching - cont
 
               ![onActivate](img/pre-cache-activate.png)
+              note:
+              * `install` only once per service worker, new sw for new changes
+              * `activate` on every startup, cleanup resources, missing in image
+              * good for caching of app shell
             </textarea>
-            note:
-            * `install` only once per service worker, new sw for new changes
-            * `activate` on every startup, cleanup resources, missing in image
-            * good for caching of app shell
           </section>
 
           <section data-markdown>
@@ -724,40 +754,11 @@
 
           <section data-markdown>
             <textarea data-template>
-              * Various combinations possible
-              * Stale While Revalidate, Cache then Network ..
+              * Various combinations possible:<br>
+                Stale While Revalidate, Cache then Network
               * Both App and SW can access cache
               * Keep cache size in mind
               * Consider abstraction, e.g. workbox
-            </textarea>
-          </section>
-
-        </section>
-
-        <section>
-          <section class="master03" data-markdown>
-            <textarea data-template>
-              ## Tools
-            </textarea>
-          </section>
-
-          <section data-markdown>
-            <textarea data-template>
-              ### Lighthouse
-
-              <img src="img/lighthouse-puzzle.png" width="350" alt="Lighthouse Puzzle Report">
-
-              [Chrome Extension](https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk)
-            </textarea>
-          </section>
-
-          <section data-markdown>
-            <textarea data-template>
-              ### Browser Dev Tools
-              * Test responsive views
-              * Simulate slow network & offline
-              * Analyze performance
-              * Inspect & debug Service Workers
             </textarea>
           </section>
         </section>
@@ -797,6 +798,7 @@
       }
 
       Reveal.initialize({
+        history: true,
         multiplex: {
           // Example values. To generate your own, see the socket.io server instructions.
           secret: "15676924036326511938", // Obtained from the socket.io server. Gives this (the master) control of the presentation
